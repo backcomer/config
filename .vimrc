@@ -18,6 +18,12 @@ Bundle 'corntrace/bufexplorer'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'motemen/git-vim'
 Bundle 'tomasr/molokai'
+Bundle 'Raimondi/delimitMate'
+Bundle 'Yggdroot/indentLine'
+Bundle 'tomasr/molokai'
+Bundle 'SirVer/ultisnips'
+Bundle 'ivanov/vim-ipython'
+Bundle 'fholgado/minibufexpl.vim'
 """""""""""""""""""""""""""""""""""""""""""""
 "高亮设置
 filetype plugin indent on
