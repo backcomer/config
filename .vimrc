@@ -74,6 +74,7 @@ map <F2> :TlistToggle<CR>
 map <F3> :NERDTreeToggle<CR>
 map <F12> <leader>be
 map <leader>o :only<CR>
+map <leader>h :cd %:h
 """窗口间移动
 map L <c-w>l
 map H <c-w>h
