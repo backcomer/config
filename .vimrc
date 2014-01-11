@@ -15,7 +15,6 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'ervandew/supertab'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'corntrace/bufexplorer'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'motemen/git-vim'
 Bundle 'tomasr/molokai'
 Bundle 'Raimondi/delimitMate'
@@ -23,7 +22,11 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'tomasr/molokai'
 Bundle 'SirVer/ultisnips'
 Bundle 'ivanov/vim-ipython'
-Bundle 'fholgado/minibufexpl.vim'
+Bundle 'vim-scripts/a.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'endel/vim-github-colorscheme'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'bling/vim-airline'
 """""""""""""""""""""""""""""""""""""""""""""
 "高亮设置
 filetype plugin indent on
@@ -56,7 +59,12 @@ set formatoptions=c,q,r,t
 
 """允许鼠标操作
 set mouse=a         
+
+"""highlight current line
+set cursorline
 "其他
+set encoding=utf-8
+set t_Co=256
 "配色方案
 colorscheme molokai
 "Font
@@ -65,34 +73,31 @@ set guifont=Monaco
 set backupdir=~/.vim/backup
 """补全
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python call SuperTabSetDefaultCompletionType("<c-x><c-u>")
 "SuperTab
 let g:SuperTabLongestHighlight=1
 "键位绑定
-map <leader>c :Dox<CR>
 map <F2> :TlistToggle<CR>
 map <F3> :NERDTreeToggle<CR>
+"""bufexplorer
 map <F12> <leader>be
+"""关闭其他buffer
 map <leader>o :only<CR>
-map <leader>h :cd %:h
+"""切换目录至当前buffer的文件目录
+map <leader>h :cd %:h<CR>
+map <leader>a :A<CR>
 """窗口间移动
-map L <c-w>l
-map H <c-w>h
-map J <c-w>j
-map K <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+map <c-j> <c-w>j
+map <c-k> <c-w>k
 """TAB
 map <leader>tt :tabnew<CR>
 map <leader>tn :tabnext<CR>
 map <leader>tp :tabprevious<CR>
-"Doxygen
+"插件参数设定
 "TagsView
 let Tlist_Show_One_File=1
 let Tlist_Use_Right_Window=1
-"nerdtree
-"powerline
-set encoding=utf-8
-set t_Co=256
-let g:Powerline_symbols = 'unicode'
 "IndentLine
 let g:indentLine_color_term=239
 let g:indentLine_color_gui='#A4E57E'
