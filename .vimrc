@@ -18,7 +18,6 @@ Bundle 'corntrace/bufexplorer'
 Bundle 'motemen/git-vim'
 Bundle 'tomasr/molokai'
 Bundle 'Raimondi/delimitMate'
-Bundle 'Yggdroot/indentLine'
 Bundle 'tomasr/molokai'
 Bundle 'SirVer/ultisnips'
 Bundle 'ivanov/vim-ipython'
@@ -27,6 +26,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
+Bundle "szw/vim-ctrlspace"
+Bundle "kshenoy/vim-signature"
 """""""""""""""""""""""""""""""""""""""""""""
 "高亮设置
 filetype plugin indent on
@@ -66,9 +67,14 @@ set cursorline
 set encoding=utf-8
 set t_Co=256
 "配色方案
-colorscheme molokai
+if has('gui_running')
+	set background=dark
+	colorscheme solarized
+else
+	colorscheme molokai
+endif
 "Font
-set guifont=Monaco
+set guifont=Monaco\ 9
 """备份文件位置
 set backupdir=~/.vim/backup
 """补全
@@ -76,10 +82,10 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 "SuperTab
 let g:SuperTabLongestHighlight=1
 "键位绑定
-map <F2> :TlistToggle<CR>
-map <F3> :NERDTreeToggle<CR>
+map tl :TlistToggle<CR>
+map fl :NERDTreeToggle<CR>
 """bufexplorer
-map <F12> <leader>be
+map <c-F12> <leader>be
 """关闭其他buffer
 map <leader>o :only<CR>
 """切换目录至当前buffer的文件目录
@@ -90,10 +96,6 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 map <c-j> <c-w>j
 map <c-k> <c-w>k
-"""TAB
-map <leader>tt :tabnew<CR>
-map <leader>tn :tabnext<CR>
-map <leader>tp :tabprevious<CR>
 "插件参数设定
 "TagsView
 let Tlist_Show_One_File=1
@@ -111,5 +113,7 @@ let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 "bufexplorer
 let g:bufExplorerShowDirectories=1
+"ctrl-space
+let g:ctrlspace_default_mapping_key="<F12>"
 "ipython
 map <leader>p :IPython<CR>
