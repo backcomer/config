@@ -1,33 +1,37 @@
-"""""""""""""""""""""""""""""""""""""""""""""
 "For Vunble
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 "My Packages
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/DoxygenToolkit.vim'
-Bundle 'corntrace/bufexplorer'
-Bundle 'motemen/git-vim'
-Bundle 'tomasr/molokai'
-Bundle 'Raimondi/delimitMate'
-Bundle 'tomasr/molokai'
-Bundle 'SirVer/ultisnips'
-Bundle 'ivanov/vim-ipython'
-Bundle 'vim-scripts/a.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bling/vim-airline'
-Bundle "szw/vim-ctrlspace"
-Bundle "kshenoy/vim-signature"
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'ervandew/supertab'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+Plugin 'corntrace/bufexplorer'
+Plugin 'motemen/git-vim'
+Plugin 'tomasr/molokai'
+Plugin 'Raimondi/delimitMate'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'vim-scripts/a.vim'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
+Plugin 'kshenoy/vim-signature'
+Plugin 'vim-scripts/javacomplete'
+"Golang
+Plugin 'fatih/vim-go'
+Plugin 'scrooloose/syntastic'
+Plugin 'rjohnsondev/vim-compiler-go'
+Plugin 'vim-jp/vim-go-extra'
+
+call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""
 "高亮设置
 filetype plugin indent on
@@ -35,7 +39,14 @@ filetype on
 syntax on
 
 "支持中文字体
-set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
+set fenc=utf-8
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,gbk,ucs-bom,cp936
+set langmenu=zh_CN.utf-8
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+language messages zh_cn.utf-8 
 "缩进设置       
 set tabstop=4      
 set shiftwidth=4    
@@ -64,21 +75,14 @@ set mouse=a
 """highlight current line
 set cursorline
 "其他
-set encoding=utf-8
 set t_Co=256
+set history=100
 "配色方案
-if has('gui_running')
-	set background=dark
-	colorscheme solarized
-else
-	colorscheme molokai
-endif
+colorscheme molokai
 "Font
-set guifont=Monaco\ 9
+set guifont=Consolas:h11
 """备份文件位置
 set backupdir=~/.vim/backup
-"""补全
-autocmd FileType python set omnifunc=pythoncomplete#Complete
 "SuperTab
 let g:SuperTabLongestHighlight=1
 "键位绑定
@@ -96,6 +100,26 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 map <c-j> <c-w>j
 map <c-k> <c-w>k
+"""Tab 移动
+map <m-j> :tabNext<CR>
+map <m-k> :tabprevious<CR>
+map <m-x> :tabclose<CR>
+map <m-n> :tabnew<CR>
+"airline
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+"""运行 
+autocmd Filetype ruby map <F5> :!ruby %<CR>
+autocmd Filetype go map <F5> :!go run %<CR>
+
 "插件参数设定
 "TagsView
 let Tlist_Show_One_File=1
@@ -113,7 +137,16 @@ let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 "bufexplorer
 let g:bufExplorerShowDirectories=1
-"ctrl-space
-let g:ctrlspace_default_mapping_key="<F12>"
-"ipython
-map <leader>p :IPython<CR>
+"airline
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#left_sep='|'
+let g:airline#extensions#tabline#left_alt_sep='|'
+let g:airline#extensions#tabline#right_sep='|'
+let g:airline#extensions#tabline#right_alt_sep='|'
+let g:airline_left_sep = '>'
+let g:airline_right_sep = '<'
+let g:airline_theme='badwolf'
+"Javacomplete
+autocmd Filetype java,jsp,javascript set omnifunc=javacomplete#Complete
